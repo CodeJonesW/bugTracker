@@ -50,7 +50,11 @@ const SavedBugs = () => {
       {console.log(userData)}
       <Jumbotron fluid className="text-light bg-dark">
         <Container>
-          <h1>Viewing {userData.username}'s bugs!</h1>
+          {userData.username ? (
+            <h1>Viewing {userData.username}'s bugs!</h1>
+          ) : (
+            <h1>Login to view Bugs</h1>
+          )}
         </Container>
       </Jumbotron>
       <Container>
@@ -59,7 +63,7 @@ const SavedBugs = () => {
             ? `Viewing ${userData.bugsReported.length} saved ${
                 userData.bugsReported.length === 1 ? "book" : "books"
               }:`
-            : "You have no saved books!"}
+            : "No saved bugs!"}
         </h2>
         <CardColumns>
           {userData.bugsReported?.map((bug) => {
