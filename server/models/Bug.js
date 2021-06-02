@@ -18,4 +18,4 @@ const bugSchema = new Schema({
   },
 });
 
-module.exports = bookSchema;
+module.exports = bugSchema;
