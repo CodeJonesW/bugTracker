@@ -78,13 +78,13 @@ const SavedBugs = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{bug.title}</Card.Title>
-                  <p className="small">Authors: {bug.authors}</p>
+                  <p className="small">Description: {bug.authors}</p>
                   <Card.Text>{bug.description}</Card.Text>
                   <Button
                     className="btn-block btn-danger"
                     onClick={() => handleDeleteBug(bug.bugId)}
                   >
-                    Delete this Book!
+                    Delete this Bug!
                   </Button>
                 </Card.Body>
               </Card>
