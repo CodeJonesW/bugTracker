@@ -21,7 +21,8 @@ const SavedBugs = () => {
   const userData = data?.me || {};
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
-  const handleDeleteBug = async (bookId) => {
+  const handleDeleteBug = async (bugId) => {
+    console.log(bugId);
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -31,11 +32,11 @@ const SavedBugs = () => {
 
     try {
       const { data } = await removeBug({
-        variables: { bookId },
+        variables: { bugId },
       });
 
       // upon success, remove book's id from localStorage
-      //   removeBugId(bookId);
+      //   removeBugId(bugId);
     } catch (err) {
       console.error(err);
     }
@@ -66,9 +67,10 @@ const SavedBugs = () => {
             : "No saved bugs!"}
         </h2>
         <CardColumns>
-          {userData.bugsReported?.map((bug) => {
+          {userData.bugsReported?.map((bug, index) => {
+            console.log(index);
             return (
-              <Card key={bug.bugId} border="dark">
+              <Card key={index} border="dark">
                 {bug.image ? (
                   <Card.Img
                     src={bug.image}
@@ -82,7 +84,7 @@ const SavedBugs = () => {
                   <Card.Text>{bug.description}</Card.Text>
                   <Button
                     className="btn-block btn-danger"
-                    onClick={() => handleDeleteBug(bug.bugId)}
+                    onClick={() => handleDeleteBug(index)}
                   >
                     Delete this Bug!
                   </Button>
